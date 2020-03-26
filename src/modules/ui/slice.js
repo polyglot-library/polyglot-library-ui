@@ -10,7 +10,6 @@ export const slice = createSlice({
   },
   reducers: {
     setScreenSize: (state, action) => {
-      console.info(action)
       state.screenSize = action.payload;
     },
   },

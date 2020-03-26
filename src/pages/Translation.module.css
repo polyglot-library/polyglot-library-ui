@@ -1,0 +1,13 @@
+.outer {
+  display: flex;
+}
+
+.inner {
+  flex: 0 0 50%;
+}
+
+.border {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 2%;
+}

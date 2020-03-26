@@ -21,6 +21,7 @@ export const selectedKeysSelector = (state) => {
   return state.translation.keys[language];
 };
 
-export const selectedTranslateKeySelector = (state) => (
-  state.translation.selectedTranslateKey
-);
+export const selectedTranslateKeySelector = (state) => {
+  const keys = selectedKeysSelector(state);
+  return keys.find((item) => item.key === state.translation.selectedTranslateKey?.key)
+}

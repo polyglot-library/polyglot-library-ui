@@ -1,4 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  selectedKeysSelector
+} from './selectors'
 
 export const slice = createSlice({
   name: 'translation',
@@ -7,33 +10,30 @@ export const slice = createSlice({
     selectedLanguage: 'en-us',
     supportedLanguages: ['pt-br', 'en-us', 'es-ar'],
     keys: {
-      'pt-br': {
-        'general.name': {
-          label: 'Nome',
-          lastUpdated: new Date()
-        },
-        'general.gender': {
-          label: 'Genêro',
-          revised: ['Wally'],
-          lastUpdated: new Date()
-        },
-        'general.age': {
-          label: 'Idade',
-          lastUpdated: new Date()
-        }
-      },
-      'en-us': {
-        'general.name': {
-          label: 'Name',
-          lastUpdated: new Date()
-        },
-        'general.gender': {
-          label: 'Gender',
-          lastUpdated: new Date()
-        }
-      },
-      'es-ar': {
-      }
+      'pt-br': [{
+        key: 'general.name',
+        label: 'Nome',
+        lastUpdate: new Date()
+      }, {
+        key: 'general.gender',
+        label: 'Genêro',
+        revised: ['Wally'],
+        lastUpdate: new Date()
+      }, {
+        key: 'general.age',
+        label: 'Idade',
+        lastUpdate: new Date()
+      }],
+      'en-us': [{
+        key: 'general.gender',
+        label: 'Gender',
+        revised: ['Wally'],
+        lastUpdate: new Date()
+      }, {
+        key: 'general.age',
+        label: 'Age',
+        lastUpdate: new Date()
+      }]
     },
     selectedTransatedKey: {}
   },
@@ -50,11 +50,43 @@ export const slice = createSlice({
     setKeys: (state, action) => {
       state.keys[action.payload.language] = action.payload.keys;
     },
-    setSelectedTransatedKey: (state, action) => {
-      state.selectedTransatedKey = action.payload
+    setSelectedTranslateKey: (state, action) => {
+      state.selectedTranslateKey = action.payload
+    },
+    updateSelectedTranslateKey: (state, action) => {
+    // updateTranslateKey: (state, action) => {
+      const baseKeys = state.keys[state.selectedLanguage];
+      const updateKey = baseKeys.find((item, i) => item.key === action.payload.key);
+      console.info(action.payload)
+
+      if (updateKey) {
+        console.info('WTFFF')
+        updateKey.label = action.payload.label;
+        updateKey.lastUpdate = new Date();
+        if(typeof updateKey.revised !== 'Array') {
+          updateKey.revised = []
+        }
+        updateKey.revised.push('wally');
+      }
     }
   },
 });
 
-export const { setScreenSize } = slice.actions;
+
+
+// // Thunk async action
+// export const updateSelectedTranslateKey = (payload) => async (dispatch, getState) => {
+//   const keys = selectedKeysSelector(state);
+
+// }
+
+export const {
+  setBaseLanguage,
+  setSelectedLanguage,
+  setSupportedLanguages,
+  setKeys,
+  setSelectedTranslateKey,
+  updateSelectedTranslateKey
+} = slice.actions;
+
 export default slice.reducer;
