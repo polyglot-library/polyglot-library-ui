@@ -1,30 +1,36 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Field } from 'react-final-form'
+import cn from 'classnames'
 
+import styles from './TrasnlateContent.module.css'
 import { selectedTranslateKeySelector } from '../../../../modules/translation/selectors'
 import { updateSelectedTranslateKey } from '../../../../modules/translation/slice'
 
 export default ({ className }) => {
   const dispatch = useDispatch();
-  const selectedKey = useSelector(selectedTranslateKeySelector);
+  const translatedKey = useSelector(selectedTranslateKeySelector);
 
   const onSubmit = (data) => {
     dispatch(updateSelectedTranslateKey({
-      key: selectedKey.key,
+      key: translatedKey.key,
       label: data.label
     }))
   };
 
+  const classComponent = cn(className, {
+    [styles.hidden]: !translatedKey
+  })
+
   return (
-    <div className={className}>
-      <div>{selectedKey?.key}</div>
-      <div>Revistors: {selectedKey?.revised}</div>
-      <div>Last update: {selectedKey?.lastUpdate.getTime()}</div>
+    <div className={classComponent}>
+      <div>{translatedKey?.key}</div>
+      <div>Revistors: {translatedKey?.revised}</div>
+      <div>Last update: {translatedKey?.lastUpdate?.getTime()}</div>
 
       <Form
         initialValues={{
-          label: selectedKey?.label
+          label: translatedKey?.label
         }}
         onSubmit={onSubmit}
         render={({ handleSubmit }) => (

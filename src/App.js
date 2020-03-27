@@ -14,14 +14,20 @@ import Translation from './pages/Translation'
 import { withResizeDetector } from 'react-resize-detector';
 import { setScreenSize } from './modules/ui/slice';
 
+console.info(theme.colors)
+
 const customTheme = {
   ...theme,
   colors: {
     ...theme.colors,
+    orange: {
+      ...theme.colors.orange,
+      500: '#f25100'
+    },
     brand: {
-      900: "#1a365d",
-      800: "#153e75",
-      700: "#2a69ac",
+      900: "#f25100",
+      800: "#f25100",
+      700: "#f25100",
     },
   },
 };

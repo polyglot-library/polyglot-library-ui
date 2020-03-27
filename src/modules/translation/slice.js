@@ -8,7 +8,16 @@ export const slice = createSlice({
   initialState: {
     baseLanguage: 'pt-br',
     selectedLanguage: 'en-us',
-    supportedLanguages: ['pt-br', 'en-us', 'es-ar'],
+    supportedLanguages: [{
+      key: 'pt-br',
+      label: 'Português (Brasil)'
+    }, {
+      key: 'en-us',
+      label: 'Inglês'
+    }, {
+      key: 'es-ar',
+      label: 'Espanhol (Argentina)'
+    }],
     keys: {
       'pt-br': [{
         key: 'general.name',
@@ -42,7 +51,7 @@ export const slice = createSlice({
       state.baseLanguage = action.payload;
     },
     setSelectedLanguage: (state, action) => {
-      state.baseLanguage = action.payload;
+      state.selectedLanguage = action.payload;
     },
     setSupportedLanguages: (state, action) => {
       state.supportedLanguages = action.payload;
@@ -56,6 +65,9 @@ export const slice = createSlice({
     updateSelectedTranslateKey: (state, action) => {
     // updateTranslateKey: (state, action) => {
       const baseKeys = state.keys[state.selectedLanguage];
+      if(!baseKeys) {
+        return state;
+      };
       const updateKey = baseKeys.find((item, i) => item.key === action.payload.key);
       console.info(action.payload)
 

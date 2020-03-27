@@ -1,0 +1,22 @@
+.base {
+  display: flex;
+  background: #f6f6f6;
+  border-color: #e4e4e4;
+}
+
+.col {
+  flex: 0 0 50%;
+}
+
+.col select {
+  width: 100%;
+}
+
+.languageSelected {
+  composes: padding from "../../../../styles/shared/spacing.css";
+
+}
+
+.languageOptions {
+  composes: padding from "../../../../styles/shared/spacing.css";
+}

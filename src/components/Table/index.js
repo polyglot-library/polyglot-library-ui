@@ -4,23 +4,22 @@ import { FixedSizeList as List, areEqual } from 'react-window';
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
 
-import { screenSizeSelector } from '../../modules/ui/selector'
+import { screenSizeSelector } from '../../modules/ui/selector';
 import { 
   baseKeysSelector,
   selectedTranslateKeySelector
-} from '../../modules/translation/selectors'
+} from '../../modules/translation/selectors';
 
-import { setSelectedTranslateKey } from '../../modules/translation/slice'
-import { generateItems } from './makeData'
+import { setSelectedTranslateKey } from '../../modules/translation/slice';
+import { generateItems } from './makeData';
+import styles from './Table.module.css';
 
 // If list items are expensive to render,
 // Consider using PureComponent to avoid unnecessary re-renders.
 // https://reactjs.org/docs/react-api.html#reactpurecomponent
 const Row = memo(({ data, index, style }) => {
-  const selected = useSelector(selectedTranslateKeySelector)
-
   // Data passed to List as "itemData" is available as props.data
-  const { items, toggleItemActive } = data;
+  const { items, toggleItemActive, selected } = data;
   const item = items[index];
 
   return (
@@ -38,31 +37,41 @@ const Row = memo(({ data, index, style }) => {
 // This is only needed since we are passing multiple props with a wrapper object.
 // If we were only passing a single, stable value (e.g. items),
 // We could just pass the value directly.
-const createItemData = memoize((items, toggleItemActive) => ({
+const createItemData = memoize((items, toggleItemActive, selected) => ({
   items,
   toggleItemActive,
+  selected
 }));
 
 // In this example, "items" is an Array of objects to render,
 // and "toggleItemActive" is a function that updates an item's state.
-function Example({ height, items, toggleItemActive, width, className }) {
+function Example({ items, toggleItemActive, className }) {
   // Bundle additional data to list items using the "itemData" prop.
   // It will be accessible to item renderers as props.data.
   // Memoize this data to avoid bypassing shouldComponentUpdate().
-  const itemData = createItemData(items, toggleItemActive);
+  const selected = useSelector(selectedTranslateKeySelector)
+  const itemData = createItemData(items, toggleItemActive, selected);
   const screenSize = useSelector(screenSizeSelector);
+  const classComponent = cn('List', {
+    [className]: selected
+  })
 
-  const classComponent = cn('List', className)
+  let width = screenSize.width - (screenSize.width / 2)
+
+  if(!selected) {
+    width = screenSize.width
+  }
 
   return (
     <List
       className={classComponent}
-      height={(screenSize.height - 100) || 300}
+      height={(screenSize.height - 136) || 300}
       itemCount={items.length}
       itemData={itemData}
       itemSize={35}
       toggleItemActive={toggleItemActive}
-      width={screenSize.width - (screenSize.width / 2)}
+      selected={selected}
+      width={width}
     >
       {Row}
     </List>
