@@ -65,11 +65,5 @@
     "eslint": "^6.8.0",
     "husky": "^4.2.3",
     "wait-on": "^4.0.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn test && yarn lint",
-      "pre-push": "yarn test && yarn lint"
-    }
   }
 }
