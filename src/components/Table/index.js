@@ -51,7 +51,7 @@ const createItemData = memoize((items, toggleItemActive, selected) => ({
 
 // In this example, "items" is an Array of objects to render,
 // and "toggleItemActive" is a function that updates an item's state.
-function Example({ items, toggleItemActive, className }) {
+const Example = ({ items, toggleItemActive, className }) => {
   // Bundle additional data to list items using the "itemData" prop.
   // It will be accessible to item renderers as props.data.
   // Memoize this data to avoid bypassing shouldComponentUpdate().
@@ -82,7 +82,13 @@ function Example({ items, toggleItemActive, className }) {
       {Row}
     </List>
   );
-}
+};
+
+Example.propTypes = {
+  className: PropTypes.string,
+  items: PropTypes.array,
+  toggleItemActive: PropTypes.func
+};
 
 const ExampleWrapper = ({ className }) => {
   // const [items, setItem] = useState(generateItems(1000))
