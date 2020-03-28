@@ -5,10 +5,10 @@ import cn from 'classnames'
 
 import styles from './TrasnlateContent.module.css'
 import { selectedTranslateKeySelector } from '../../../../modules/translation/selectors'
-import { updateSelectedTranslateKey } from '../../../../modules/translation/slice'
+import {updateSelectedTranslateKey} from '../../../../modules/translation/slice'
 
-export default ({ className }) => {
-  const dispatch = useDispatch();
+export default ({ className}) => {
+  const dispatch = useDispatch()
   const translatedKey = useSelector(selectedTranslateKeySelector);
 
   const onSubmit = (data) => {
@@ -24,9 +24,9 @@ export default ({ className }) => {
 
   return (
     <div className={classComponent}>
-      <div>{translatedKey?.key}</div>
+      <div>{ translatedKey?.key }</div>
       <div>Revistors: {translatedKey?.revised}</div>
-      <div>Last update: {translatedKey?.lastUpdate?.getTime()}</div>
+      <div>Last update: { translatedKey?.lastUpdate?.getTime() }</div>
 
       <Form
         initialValues={{

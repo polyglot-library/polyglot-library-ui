@@ -11,7 +11,7 @@ const Translation = () => {
     <div className={styles.base}>
       <Navbar />
       <LanguageConfig />
-      <div className={styles.outer}>
+      <div className={ styles.outer }>
         <Table className={styles.inner}/>
         <TranslateContent className={styles.inner}/>
       </div>

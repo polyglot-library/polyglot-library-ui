@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
+import React from 'react';
+import { Box, Heading, Flex, Text, Button } from '@chakra-ui/core';
 
 const MenuItems = ({ children }) => (
   <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
@@ -23,7 +23,7 @@ const Navbar = (props) => {
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+        <Heading as="h1" size="lg" letterSpacing={'-.1rem'}>
           Polyglot Library
         </Heading>
       </Flex>

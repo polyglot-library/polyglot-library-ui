@@ -5,7 +5,7 @@ export const slice = createSlice({
   initialState: {
     screenSize: {
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
     },
   },
   reducers: {

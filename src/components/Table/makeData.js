@@ -1,9 +1,9 @@
-export const generateItems = numItems =>
+export const generateItems = (numItems) =>
   Array(numItems)
-    .fill(true)
-    .map(_ => ({
-      isActive: false,
-      label: Math.random()
-        .toString(36)
-        .substr(2),
-    }));
+      .fill(true)
+      .map((_) => ({
+        isActive: false,
+        label: Math.random()
+            .toString(36)
+            .substr(2),
+      }));
