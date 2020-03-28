@@ -5,5 +5,5 @@ export const generateItems = (numItems) =>
         isActive: false,
         label: Math.random()
             .toString(36)
-            .substr(2),
+            .substr(2)
       }));

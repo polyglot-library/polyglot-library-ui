@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
+  Route
 } from 'react-router-dom';
 
 import { ThemeProvider, theme } from '@chakra-ui/core';
@@ -22,14 +22,14 @@ const customTheme = {
     ...theme.colors,
     orange: {
       ...theme.colors.orange,
-      500: '#f25100',
+      500: '#f25100'
     },
     brand: {
       900: '#f25100',
       800: '#f25100',
-      700: '#f25100',
-    },
-  },
+      700: '#f25100'
+    }
+  }
 };
 
 const App = ({ height, width }) => {
@@ -38,7 +38,7 @@ const App = ({ height, width }) => {
 
   const [, cancel] = useDebounce(() => {
     dispatch(setScreenSize({ height, width }));
-  }, 100, [{ height, width }],
+  }, 100, [{ height, width }]
   );
 
   return (

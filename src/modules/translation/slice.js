@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  selectedKeysSelector,
+  selectedKeysSelector
 } from './selectors';
 
 export const slice = createSlice({
@@ -10,41 +10,41 @@ export const slice = createSlice({
     selectedLanguage: 'en-us',
     supportedLanguages: [{
       key: 'pt-br',
-      label: 'Português (Brasil)',
+      label: 'Português (Brasil)'
     }, {
       key: 'en-us',
-      label: 'Inglês',
+      label: 'Inglês'
     }, {
       key: 'es-ar',
-      label: 'Espanhol (Argentina)',
+      label: 'Espanhol (Argentina)'
     }],
     keys: {
       'pt-br': [{
         key: 'general.name',
         label: 'Nome',
-        lastUpdate: new Date(),
+        lastUpdate: new Date()
       }, {
         key: 'general.gender',
         label: 'Genêro',
         revised: ['Wally'],
-        lastUpdate: new Date(),
+        lastUpdate: new Date()
       }, {
         key: 'general.age',
         label: 'Idade',
-        lastUpdate: new Date(),
+        lastUpdate: new Date()
       }],
       'en-us': [{
         key: 'general.gender',
         label: 'Gender',
         revised: ['Wally'],
-        lastUpdate: new Date(),
+        lastUpdate: new Date()
       }, {
         key: 'general.age',
         label: 'Age',
-        lastUpdate: new Date(),
-      }],
+        lastUpdate: new Date()
+      }]
     },
-    selectedTransatedKey: {},
+    selectedTransatedKey: {}
   },
   reducers: {
     setBaseLanguage: (state, action) => {
@@ -67,7 +67,7 @@ export const slice = createSlice({
       const baseKeys = state.keys[state.selectedLanguage];
       if (!baseKeys) {
         return state;
-      };
+      }
       const updateKey = baseKeys.find((item, i) => item.key === action.payload.key);
       console.info(action.payload);
 
@@ -80,8 +80,8 @@ export const slice = createSlice({
         }
         updateKey.revised.push('wally');
       }
-    },
-  },
+    }
+  }
 });
 
 
@@ -97,7 +97,7 @@ export const {
   setSupportedLanguages,
   setKeys,
   setSelectedTranslateKey,
-  updateSelectedTranslateKey,
+  updateSelectedTranslateKey
 } = slice.actions;
 
 export default slice.reducer;

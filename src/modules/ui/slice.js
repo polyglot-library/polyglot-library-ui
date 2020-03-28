@@ -5,14 +5,14 @@ export const slice = createSlice({
   initialState: {
     screenSize: {
       width: window.innerWidth,
-      height: window.innerHeight,
-    },
+      height: window.innerHeight
+    }
   },
   reducers: {
     setScreenSize: (state, action) => {
       state.screenSize = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const { setScreenSize } = slice.actions;

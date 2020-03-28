@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import {
   optionsLanguagesSelector,
-  baseLanguageObjectSelector,
+  baseLanguageObjectSelector
 } from '../../selectors';
 
 import { setSelectedLanguage } from '../../slice';
@@ -33,7 +33,7 @@ const LanguageConfig = () => {
         <div className={styles.languageOptions}>
           <select onChange={changeLanguageHandler}>
             {optionsLanguages.map((lang) =>
-              <option key={lang.key} value={lang.key}>{lang.label}</option>,
+              <option key={lang.key} value={lang.key}>{lang.label}</option>
             )};
           </select>
         </div>

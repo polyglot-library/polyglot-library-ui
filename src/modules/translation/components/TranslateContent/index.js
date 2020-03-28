@@ -1,26 +1,26 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Form, Field } from 'react-final-form'
-import cn from 'classnames'
+import { Form, Field } from 'react-final-form';
+import cn from 'classnames';
 
-import styles from './TrasnlateContent.module.css'
-import { selectedTranslateKeySelector } from '../../../../modules/translation/selectors'
-import {updateSelectedTranslateKey} from '../../../../modules/translation/slice'
+import styles from './TrasnlateContent.module.css';
+import { selectedTranslateKeySelector } from '../../../../modules/translation/selectors';
+import { updateSelectedTranslateKey } from '../../../../modules/translation/slice';
 
-export default ({ className}) => {
-  const dispatch = useDispatch()
+export default ({ className }) => {
+  const dispatch = useDispatch();
   const translatedKey = useSelector(selectedTranslateKeySelector);
 
   const onSubmit = (data) => {
     dispatch(updateSelectedTranslateKey({
       key: translatedKey.key,
       label: data.label
-    }))
+    }));
   };
 
   const classComponent = cn(className, {
     [styles.hidden]: !translatedKey
-  })
+  });
 
   return (
     <div className={classComponent}>
@@ -53,7 +53,5 @@ export default ({ className}) => {
     </div>
   );
 };
-
-
 
 
