@@ -20,7 +20,7 @@ export default ({ className }) => {
 
   const classComponent = cn(className, {
     [styles.hidden]: !translatedKey
-  })
+  });
 
   return (
     <div className={classComponent}>
