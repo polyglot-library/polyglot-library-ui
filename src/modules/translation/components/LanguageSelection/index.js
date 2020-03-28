@@ -7,7 +7,7 @@ import {
 } from 'modules/translation/selectors';
 
 import { setSelectedLanguage } from 'modules/translation/slice';
-import styles from './LanguageConfig.module.css';
+import styles from './LanguageSelection.module.css';
 
 const LanguageConfig = () => {
   const dispatch = useDispatch();

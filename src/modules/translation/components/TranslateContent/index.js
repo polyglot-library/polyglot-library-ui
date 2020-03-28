@@ -19,7 +19,7 @@ const TranslateContent = ({ className }) => {
     }));
   };
 
-  const classComponent = cn(className, {
+  const classComponent = cn(className, styles.TranslateContent, {
     [styles.hidden]: !translatedKey
   });
 

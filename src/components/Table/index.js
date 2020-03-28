@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import memoize from 'memoize-one';
 import { FixedSizeList as List, areEqual } from 'react-window';
 import { useSelector, useDispatch } from 'react-redux';
+import memoize from 'memoize-one';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -12,7 +12,7 @@ import {
 } from 'modules/translation/selectors';
 
 import { setSelectedTranslateKey } from 'modules/translation/slice';
-// import styles from './Table.module.css';
+import styles from './Table.module.css';
 
 // If list items are expensive to render,
 // Consider using PureComponent to avoid unnecessary re-renders.
@@ -24,7 +24,7 @@ const Row = memo(({ data, index, style }) => {
 
   return (
     <div
-      className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
+      className={ index % 2 ? styles.ItemOdd : styles.ItemEven }
       onClick={() => toggleItemActive(index)} style={style}
     >
       {item.label} is {item.key === selected?.key ? 'active' : 'inactive'}
@@ -58,7 +58,7 @@ function Example({ items, toggleItemActive, className }) {
   const selected = useSelector(selectedTranslateKeySelector);
   const itemData = createItemData(items, toggleItemActive, selected);
   const screenSize = useSelector(screenSizeSelector);
-  const classComponent = cn('List', {
+  const classComponent = cn(styles.List, {
     [className]: selected
   });
 

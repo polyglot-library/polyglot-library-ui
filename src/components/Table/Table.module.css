@@ -1,4 +1,14 @@
+.List {
+  /* border: 1px solid #d9dddd; */
+}
 
-.selectedLanguage {
-  flex: 0 0 100%;
+.ItemEven,
+.ItemOdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ItemEven {
+  background-color: #f8f8f0;
 }
