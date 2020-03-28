@@ -1,16 +1,7 @@
 import React from 'react';
-import { Box, Heading, Flex, Text, Button } from '@chakra-ui/core';
-
-const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-    {children}
-  </Text>
-);
+import { Heading, Flex } from '@chakra-ui/core';
 
 const Navbar = (props) => {
-  const [show, setShow] = React.useState(false);
-  const handleToggle = () => setShow(!show);
-
   return (
     <Flex
       as="nav"

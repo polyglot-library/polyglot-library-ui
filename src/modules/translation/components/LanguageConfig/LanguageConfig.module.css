@@ -13,10 +13,10 @@
 }
 
 .languageSelected {
-  composes: padding from "../../../../styles/shared/spacing.css";
+  composes: padding from "~styles/shared/spacing.css";
 
 }
 
 .languageOptions {
-  composes: padding from "../../../../styles/shared/spacing.css";
+  composes: padding from "~styles/shared/spacing.css";
 }

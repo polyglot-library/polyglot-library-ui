@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import propTypes from 'prop-types';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,10 +8,9 @@ import {
 } from 'react-router-dom';
 
 import { ThemeProvider, theme } from '@chakra-ui/core';
-import { Provider, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useDebounce } from 'react-use';
 
-import store from './store';
 import Translation from './pages/Translation';
 import { withResizeDetector } from 'react-resize-detector';
 import { setScreenSize } from './modules/ui/slice';
@@ -34,9 +35,8 @@ const customTheme = {
 
 const App = ({ height, width }) => {
   const dispatch = useDispatch();
-  const [screen, setScreen] = React.useState({ height, width });
 
-  const [, cancel] = useDebounce(() => {
+  useDebounce(() => {
     dispatch(setScreenSize({ height, width }));
   }, 100, [{ height, width }]
   );
@@ -51,6 +51,11 @@ const App = ({ height, width }) => {
       </ThemeProvider>
     </Router>
   );
+};
+
+App.propTypes = {
+  height: propTypes.number,
+  width: propTypes.number
 };
 
 export default withResizeDetector(App);

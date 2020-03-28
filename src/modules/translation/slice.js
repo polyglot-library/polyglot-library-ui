@@ -1,7 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  selectedKeysSelector
-} from './selectors';
 
 export const slice = createSlice({
   name: 'translation',
@@ -75,7 +72,7 @@ export const slice = createSlice({
         console.info('WTFFF');
         updateKey.label = action.payload.label;
         updateKey.lastUpdate = new Date();
-        if (typeof updateKey.revised !== 'Array') {
+        if (!Array.isArray(updateKey.revised)) {
           updateKey.revised = [];
         }
         updateKey.revised.push('wally');

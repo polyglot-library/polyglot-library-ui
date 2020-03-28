@@ -1,13 +1,14 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import cn from 'classnames';
 
 import styles from './TrasnlateContent.module.css';
-import { selectedTranslateKeySelector } from '../../../../modules/translation/selectors';
-import { updateSelectedTranslateKey } from '../../../../modules/translation/slice';
+import { selectedTranslateKeySelector } from 'modules/translation/selectors';
+import { updateSelectedTranslateKey } from 'modules/translation/slice';
 
-export default ({ className }) => {
+const TranslateContent = ({ className }) => {
   const dispatch = useDispatch();
   const translatedKey = useSelector(selectedTranslateKeySelector);
 
@@ -54,4 +55,8 @@ export default ({ className }) => {
   );
 };
 
+TranslateContent.propTypes = {
+  className: propTypes.string
+};
 
+export default TranslateContent;

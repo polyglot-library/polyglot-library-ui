@@ -1,18 +1,18 @@
-import React, { PureComponent, memo, useState } from 'react';
+import React, { memo } from 'react';
 import memoize from 'memoize-one';
 import { FixedSizeList as List, areEqual } from 'react-window';
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 
-import { screenSizeSelector } from '../../modules/ui/selector';
-import { 
+import { screenSizeSelector } from 'modules/ui/selector';
+import {
   baseKeysSelector,
   selectedTranslateKeySelector
-} from '../../modules/translation/selectors';
+} from 'modules/translation/selectors';
 
-import { setSelectedTranslateKey } from '../../modules/translation/slice';
-import { generateItems } from './makeData';
-import styles from './Table.module.css';
+import { setSelectedTranslateKey } from 'modules/translation/slice';
+// import styles from './Table.module.css';
 
 // If list items are expensive to render,
 // Consider using PureComponent to avoid unnecessary re-renders.
@@ -24,13 +24,19 @@ const Row = memo(({ data, index, style }) => {
 
   return (
     <div
-      className={index % 2 ? "ListItemOdd" : "ListItemEven"}
+      className={index % 2 ? 'ListItemOdd' : 'ListItemEven'}
       onClick={() => toggleItemActive(index)} style={style}
     >
       {item.label} is {item.key === selected?.key ? 'active' : 'inactive'}
     </div>
   );
 }, areEqual);
+
+Row.propTypes = {
+  data: PropTypes.array,
+  index: PropTypes.number,
+  style: PropTypes.object
+};
 
 // This helper function memoizes incoming props,
 // To avoid causing unnecessary re-renders pure Row components.
@@ -49,17 +55,17 @@ function Example({ items, toggleItemActive, className }) {
   // Bundle additional data to list items using the "itemData" prop.
   // It will be accessible to item renderers as props.data.
   // Memoize this data to avoid bypassing shouldComponentUpdate().
-  const selected = useSelector(selectedTranslateKeySelector)
+  const selected = useSelector(selectedTranslateKeySelector);
   const itemData = createItemData(items, toggleItemActive, selected);
   const screenSize = useSelector(screenSizeSelector);
   const classComponent = cn('List', {
     [className]: selected
-  })
+  });
 
-  let width = screenSize.width - (screenSize.width / 2)
+  let width = screenSize.width - (screenSize.width / 2);
 
-  if(!selected) {
-    width = screenSize.width
+  if (!selected) {
+    width = screenSize.width;
   }
 
   return (
@@ -80,14 +86,13 @@ function Example({ items, toggleItemActive, className }) {
 
 const ExampleWrapper = ({ className }) => {
   // const [items, setItem] = useState(generateItems(1000))
-  const [items, setItem] = useState(useSelector(baseKeysSelector))
-  const [lastItem, setLastItem] = useState(null)
-  const dispatch = useDispatch()
+  const items = useSelector(baseKeysSelector);
+  const dispatch = useDispatch();
 
-  const toggleItemActive = index => {
-    const item = items[index]
-    dispatch(setSelectedTranslateKey(item))
-  }
+  const toggleItemActive = (index) => {
+    const item = items[index];
+    dispatch(setSelectedTranslateKey(item));
+  };
 
   return (
     <Example
@@ -96,6 +101,10 @@ const ExampleWrapper = ({ className }) => {
       toggleItemActive={toggleItemActive}
     />
   );
-}
-  
-export default ExampleWrapper
+};
+
+ExampleWrapper.propTypes = {
+  className: PropTypes.string
+};
+
+export default ExampleWrapper;

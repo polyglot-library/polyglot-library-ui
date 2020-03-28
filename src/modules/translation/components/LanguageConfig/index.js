@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import cn from 'classnames';
 
 import {
   optionsLanguagesSelector,
   baseLanguageObjectSelector
-} from '../../selectors';
+} from 'modules/translation/selectors';
 
-import { setSelectedLanguage } from '../../slice';
+import { setSelectedLanguage } from 'modules/translation/slice';
 import styles from './LanguageConfig.module.css';
 
 const LanguageConfig = () => {

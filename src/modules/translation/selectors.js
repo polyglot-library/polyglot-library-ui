@@ -15,7 +15,7 @@ export const baseLanguageObjectSelector = (state) => {
   const supportedLanguages = supportedLanguagesSelector(state);
 
   return supportedLanguages.find(
-    lang => lang.key === baseLanguage
+      (lang) => lang.key === baseLanguage
   );
 };
 
@@ -25,7 +25,7 @@ export const optionsLanguagesSelector = (state) => {
   const supportedLanguages = supportedLanguagesSelector(state);
 
   return supportedLanguages.filter(
-    lang => lang.key !== baseLanguage
+      (lang) => lang.key !== baseLanguage
   );
 };
 
@@ -41,5 +41,5 @@ export const selectedKeysSelector = (state) => {
 
 export const selectedTranslateKeySelector = (state) => {
   const keys = selectedKeysSelector(state);
-  return keys?.find((item) => item.key === state.translation.selectedTranslateKey?.key)
-}
+  return keys?.find((item) => item.key === state.translation.selectedTranslateKey?.key);
+};
